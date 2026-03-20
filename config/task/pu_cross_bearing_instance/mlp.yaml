@@ -1,0 +1,9 @@
+# @package _global_
+
+defaults:
+  - /task/pu_cross_bearing_instance
+  - _self_
+
+models: [mlp]
+views:
+  flatten: true

@@ -1,0 +1,16 @@
+# @package _global_
+
+run:
+  name: pu_cross_operating_condition
+  output_dir: artifacts/experiments/pu
+
+windowing:
+  size: 8192
+  train_overlap: 0.5
+  test_overlap: 0.5
+
+dataset:
+  loader: pu
+  root: ${oc.env:WORKSPACE}/datasets/paderborn-university-bearing-dataset/
+  train_query: "raster == 'HostService' and operating_condition in ['N15_M01_F10', 'N15_M07_F04', 'N15_M07_F10']"
+  test_query: "raster == 'HostService' and operating_condition == 'N09_M07_F10'"

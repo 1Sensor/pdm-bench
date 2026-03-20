@@ -1,0 +1,9 @@
+# @package _global_
+
+defaults:
+  - /task/pu_cross_operating_condition
+  - _self_
+
+models: [mlp]
+views:
+  flatten: true

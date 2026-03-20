@@ -1,0 +1,74 @@
+defaults:
+  - dataset: cwru
+  - _self_
+  - task: none
+
+run:
+  name: ""
+  output_dir: artifacts/ml
+  log_to_file: true
+
+windowing:
+  size: 4096
+  train_overlap: 0.75
+  test_overlap: 0.5
+
+features:
+  mode: time_freq
+  time_features:
+    - rms
+    - std
+    - kurt
+    - cf
+    - sf
+    - clf
+    - ii
+  freq_features:
+    - mf
+    - fc
+    - rms_f
+    - std_f
+
+train:
+  classifier_names:
+    - LogisticRegression
+    - SVM
+    - RF
+    - XGBoost
+  use_bayesian_search: true
+  bayes_n_iter: 30
+  bayes_cv: 3
+  bayes_n_points: 1
+  n_jobs: -1
+  search_spaces: {}
+
+artifacts:
+  save_predictions: false
+  save_probs: false
+  save_confusion_matrix: true
+
+tracking:
+  enabled: false
+  experiment_name: pdm-bench
+
+hydra:
+  run:
+    dir: ${run.output_dir}/runs/${now:%Y-%m-%d}/${now:%H-%M-%S}_${run.name}
+  sweep:
+    dir: ${run.output_dir}/multirun/${now:%Y-%m-%d}/${now:%H-%M-%S}_${run.name}
+    subdir: ${hydra.job.num}_${hydra.job.override_dirname}
+  job:
+    chdir: true
+    config:
+      override_dirname:
+        exclude_keys:
+          - run.output_dir
+          - tracking.enabled
+          - tracking.experiment_name
+          - train.classifier_names
+          - train.bayes_n_iter
+          - train.bayes_cv
+          - train.bayes_n_points
+          - windowing.size
+          - windowing.train_overlap
+          - windowing.test_overlap

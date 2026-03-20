@@ -1,0 +1,55 @@
+defaults:
+  - dataset: cwru
+  - _self_
+  - task: none
+
+run:
+  name: ""
+  output_dir: artifacts/dl
+  log_to_file: true
+
+windowing:
+  size: 4096
+  train_overlap: 0.75
+  test_overlap: 0.5
+
+views:
+  flatten: false
+
+models:
+  - stft
+  - fft
+  - cnn1d
+
+train:
+  epochs: 50
+  batch_size: 128
+  num_workers: 0
+  device: cuda
+  amp: false
+  optimizer:
+    name: adamw
+    lr: 0.001
+    weight_decay: 0.0001
+  scheduler:
+    name: plateau
+    factor: 0.5
+    patience: 3
+
+artifacts:
+  save_predictions: false
+  save_probs: false
+  save_confusion_matrix: true
+
+tracking:
+  enabled: false
+  experiment_name: pdm-bench
+
+hydra:
+  run:
+    dir: ${run.output_dir}/runs/${now:%Y-%m-%d}/${now:%H-%M-%S}_${run.name}
+  sweep:
+    dir: ${run.output_dir}/multirun/${now:%Y-%m-%d}/${now:%H-%M-%S}_${run.name}
+    subdir: ${hydra.job.num}_${hydra.job.override_dirname}
+  job:
+    chdir: true

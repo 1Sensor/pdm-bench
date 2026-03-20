@@ -1,0 +1,16 @@
+# @package _global_
+
+run:
+  name: pu_cross_bearing_instance
+  output_dir: artifacts/experiments/pu
+
+windowing:
+  size: 8192
+  train_overlap: 0.5
+  test_overlap: 0.5
+
+dataset:
+  loader: pu
+  root: ${oc.env:WORKSPACE}/datasets/paderborn-university-bearing-dataset/
+  train_query: "raster == 'HostService' and bearing_code not in ['K001', 'KA30', 'KI21', 'KB23']"
+  test_query: "raster == 'HostService' and bearing_code in ['K001', 'KA30', 'KI21', 'KB23']"

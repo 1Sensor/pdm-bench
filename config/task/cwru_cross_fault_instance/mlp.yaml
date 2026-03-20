@@ -1,0 +1,9 @@
+# @package _global_
+
+defaults:
+  - /task/cwru_cross_fault_instance
+  - _self_
+
+models: [mlp]
+views:
+  flatten: true

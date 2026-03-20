@@ -1,0 +1,16 @@
+# @package _global_
+
+run:
+  name: cwru_cross_fault_instance
+  output_dir: artifacts/experiments/cwru
+
+windowing:
+  size: 2048
+  train_overlap: 0.5
+  test_overlap: 0.5
+
+dataset:
+  train_query: "Experiment == '12DriveEndFault' and recording_family in ['0.007-Ball', '0.014-Ball', '0.007-InnerRace', '0.014-InnerRace', '0.007-OuterRace3', '0.007-OuterRace6', '0.007-OuterRace12', '0.014-OuterRace6']"
+  test_query: "Experiment == '12DriveEndFault' and recording_family in ['0.021-Ball', '0.021-InnerRace', '0.021-OuterRace3', '0.021-OuterRace6', '0.021-OuterRace12']"
+  loader_kwargs:
+    sensors: [DE]

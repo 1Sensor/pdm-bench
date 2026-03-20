@@ -1,0 +1,4 @@
+_target_: hydra._internal.core_plugins.basic_sweeper.BasicSweeper
+max_batch_size: 1
+params:
+  task: cwru_cross_load,cwru_cross_fs,cwru_cross_fault_instance,pu_cross_operating_condition,pu_cross_damage_provenance,pu_cross_bearing_instance

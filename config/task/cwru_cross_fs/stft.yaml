@@ -1,0 +1,7 @@
+# @package _global_
+
+defaults:
+  - /task/cwru_cross_fs
+  - _self_
+
+models: [stft]
