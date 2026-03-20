@@ -1,0 +1,16 @@
+# @package _global_
+
+run:
+  name: cwru_cross_load
+  output_dir: artifacts/experiments/cwru
+
+windowing:
+  size: 2048
+  train_overlap: 0.5
+  test_overlap: 0.5
+
+dataset:
+  train_query: "Experiment in ['12DriveEndFault', 'NormalBaseline'] and fs == 12000.0 and rpm in [1797, 1772, 1750]"
+  test_query: "Experiment in ['12DriveEndFault', 'NormalBaseline'] and fs == 12000.0 and rpm == 1730"
+  loader_kwargs:
+    sensors: [DE]

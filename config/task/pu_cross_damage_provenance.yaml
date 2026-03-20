@@ -1,0 +1,16 @@
+# @package _global_
+
+run:
+  name: pu_cross_damage_provenance
+  output_dir: artifacts/experiments/pu
+
+windowing:
+  size: 8192
+  train_overlap: 0.5
+  test_overlap: 0.5
+
+dataset:
+  loader: pu
+  root: ${oc.env:WORKSPACE}/datasets/paderborn-university-bearing-dataset/
+  train_query: "raster == 'HostService' and label != 'multiple' and ((label == 'healthy' and bearing_code in ['K002', 'K003', 'K004', 'K005', 'K006']) or damage_provenance == 'artificial')"
+  test_query: "raster == 'HostService' and label != 'multiple' and ((label == 'healthy' and bearing_code == 'K001') or damage_provenance == 'lifetime')"

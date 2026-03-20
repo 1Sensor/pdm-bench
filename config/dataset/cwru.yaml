@@ -1,0 +1,4 @@
+loader: cwru
+root: ${oc.env:WORKSPACE}/datasets/javadseraj-cwru-bearing-fault-data-set/Datasets/CWRU/
+train_query: "(Experiment == '12DriveEndFault' or Experiment == 'NormalBaseline') and rpm in [1730, 1772, 1797]"
+test_query: "(Experiment == '12DriveEndFault' or Experiment == 'NormalBaseline') and rpm == 1750"

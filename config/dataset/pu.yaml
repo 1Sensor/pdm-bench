@@ -1,0 +1,2 @@
+loader: pu
+root: ${oc.env:WORKSPACE}/datasets/paderborn-university-bearing-dataset/
